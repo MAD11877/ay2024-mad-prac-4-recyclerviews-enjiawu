@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> {
+
     ArrayList<User> data;
     Context context;
 

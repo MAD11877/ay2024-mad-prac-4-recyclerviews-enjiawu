@@ -39,13 +39,6 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/profileLarge"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="250dp"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
-
 
 </LinearLayout>
 
