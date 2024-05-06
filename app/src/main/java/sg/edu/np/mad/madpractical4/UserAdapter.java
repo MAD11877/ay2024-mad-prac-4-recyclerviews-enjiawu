@@ -26,8 +26,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> {
     }
 
     public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        // you used the wrong layout file
-        View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_activity_list, parent, false);
+        View item;
+        if (data.get(viewType).name.endsWith("7")) {
+           item = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_activity_list_7, parent, false);
+        }
+        else{
+            item = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_activity_list, parent, false);
+        }
         return new UserViewHolder(item);
     }
 
@@ -36,32 +41,36 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> {
         holder.name.setText(user.name);
         holder.description.setText(user.description);
 
-        holder.imageViewSmall.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
 
-                builder.setTitle(user.name);
-                builder.setMessage(user.description);
-                builder.setCancelable(true);
+                builder.setTitle("Profile")
+                    .setMessage(user.name)
+                    .setCancelable(true)
+                    .setPositiveButton("View", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Random rand = new Random();
+                            int randomNum = rand.nextInt(999999);
+                            Intent goToMainActivity  = new Intent(context, MainActivity.class);
+                            goToMainActivity .putExtra("name", user.name + randomNum);
+                            goToMainActivity .putExtra("description", user.description);
+                            goToMainActivity .putExtra("followed", user.followed);
+                            goToMainActivity .putExtra("id", user.id);
+                            v.getContext().startActivity(goToMainActivity);
+                        }
+                    })
+                    .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                builder.setPositiveButton("VIEW", new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dialog, int id){
-                        Intent goToMainActivity = new Intent (context, MainActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("User", (Serializable) user);
-                        goToMainActivity.putExtras(bundle); //Both must be string values
-                        context.startActivity(goToMainActivity);
-                    }
-                });
-                builder.setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                    }
-                }
-                );
+                        }
+                    });
 
                 AlertDialog alert = builder.create();
+                alert.show();
             }
         });
     }

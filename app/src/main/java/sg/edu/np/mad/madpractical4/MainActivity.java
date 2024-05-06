@@ -37,15 +37,25 @@ public class MainActivity extends AppCompatActivity {
 
         //Reading the random number
         Intent receivingEnd = getIntent();
-        String number = receivingEnd.getStringExtra("randomNumber");
+        String name = receivingEnd.getStringExtra("name");
+        String description = receivingEnd.getStringExtra("description");
+        String followed = receivingEnd.getStringExtra("followed");
+        String id = receivingEnd.getStringExtra("id");
 
         //Set the TextViews with the User's name, description and default button message
-        tvName.setText("MAD" + number);
-        tvDescription.setText(user.description);
-        btnFollow.setText("Follow");
+        tvName.setText(name);
+        tvDescription.setText(description);
 
-        //Boolean to check if user is following
-        isFollowing = false;
+        if (followed == "true") {
+            btnFollow.setText("Unfollow");
+            //Boolean to check if user is following
+            isFollowing = true;
+        }
+        else{
+            btnFollow.setText("Follow");
+            //Boolean to check if user is following
+            isFollowing = false;
+        }
 
         //OnClick Event handler
         btnFollow.setOnClickListener(new View.OnClickListener() {
