@@ -25,7 +25,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> {
     }
 
     public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View item = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.activity_list_item, parent, false);
+        // you used the wrong layout file
+        View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_activity_list, parent, false);
         return new UserViewHolder(item);
     }
 
@@ -33,7 +34,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> {
         User user = data.get(position);
         holder.name.setText(user.name);
         holder.description.setText(user.description);
-        holder.imageViewSmall.setImageResource(R.drawable.ic_launcher_foreground);
 
         holder.imageViewSmall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +59,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> {
                     }
                 }
                 );
+
+                AlertDialog alert = builder.create();
             }
         });
     }
@@ -66,4 +68,5 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> {
     public int getItemCount() {
         return data.size();
     }
+
 }
