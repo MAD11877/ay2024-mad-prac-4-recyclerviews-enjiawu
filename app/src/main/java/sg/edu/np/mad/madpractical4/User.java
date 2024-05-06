@@ -12,4 +12,14 @@ public class User {
         this.id = id;
         this.followed = followed;
     }
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+    public boolean getFollowed() {
+        return followed;
+    }
 }

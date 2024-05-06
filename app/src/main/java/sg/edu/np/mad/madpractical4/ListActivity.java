@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -63,14 +66,22 @@ public class ListActivity extends AppCompatActivity {
             }
         );
 
-        ImageView profile = findViewById(R.id.profileIcon);
-        profile.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                   AlertDialog alert = builder.create();
-                   alert.show();
-               }
-           }
-        );
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        UserAdapter userAdapter =  new UserAdapter(this, userArrayList);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(userAdapter);
+
+        /**
+         recyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        }
+        );**/
+
     }
 }
