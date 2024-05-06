@@ -26,18 +26,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> {
     }
 
     public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View item;
-        if (data.get(viewType).name.endsWith("7")) {
-           item = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_activity_list_7, parent, false);
-        }
-        else{
-            item = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_activity_list, parent, false);
-        }
+        View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_activity_list, parent, false);
         return new UserViewHolder(item);
     }
 
     public void onBindViewHolder(UserViewHolder holder, int position){
         User user = data.get(position);
+
+        if (String.valueOf(user.id).endsWith("7")) {
+            holder.imageViewLarge.setVisibility(View.VISIBLE);
+        }
+
         holder.name.setText(user.name);
         holder.description.setText(user.description);
 
@@ -76,6 +75,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> {
                 AlertDialog alert = builder.create();
                 alert.show();
             }
+
+
         });
     }
 
