@@ -20,10 +20,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> {
     ArrayList<User> data;
     Context context;
 
-    public UserAdapter(Context context, ArrayList<User> input){
+    public UserAdapter(ArrayList<User> input, Context context){
         this.context = context;
         this.data = input;
     }
+
 
     public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_activity_list, parent, false);
