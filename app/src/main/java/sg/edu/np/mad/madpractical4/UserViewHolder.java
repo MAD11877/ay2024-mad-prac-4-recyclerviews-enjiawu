@@ -16,5 +16,6 @@ public class UserViewHolder extends RecyclerView.ViewHolder {
         name = itemView.findViewById(R.id.name);
         description = itemView.findViewById(R.id.description);
         imageViewSmall = itemView.findViewById(R.id.profileSmall);
+        imageViewLarge = itemView.findViewById(R.id.profileLarge);
     }
 }
