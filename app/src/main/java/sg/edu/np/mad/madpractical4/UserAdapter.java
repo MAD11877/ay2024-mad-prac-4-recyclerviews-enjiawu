@@ -33,7 +33,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> {
     public void onBindViewHolder(UserViewHolder holder, int position){
         User user = data.get(position);
 
-        if (String.valueOf(user.id).endsWith("7")) {
+        if (String.valueOf(user.name).endsWith("7")) {
             holder.imageViewLarge.setVisibility(View.VISIBLE);
         }
 
